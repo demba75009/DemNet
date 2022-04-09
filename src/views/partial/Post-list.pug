@@ -1,0 +1,8 @@
+each P in post 
+ div(class="justify-content-center")
+  div(class="card-text")=P.subject 
+  br
+  p(class="card-text")=P.comment
+
+  button(class="btn btn-outline-warning " PostId=P._id) Editer
+  button(class="btn btn-outline-danger float-right mx-3" PostId=P._id) X

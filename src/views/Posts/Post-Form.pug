@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        include ../Layout.pug
+    body    
+    br    
+    form(class="form-control p-5 mr-3  container justify-content-center" method="post" action="/Posts/New")  
+     br
+     input(class="form-control" type="text" name="subject" placeholder="Sujet")
+     br
+     br
+     textarea(class="form-control" name="comment", placeholder="ecrivez", cols="30", rows="10")  
+     br
+     button(type="submit" class="btn btn-primary") Publiez 

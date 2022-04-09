@@ -1,0 +1,11 @@
+.NewPost {
+  background-color: red;
+  border: 1px solid black;
+
+  border-radius: 70%;
+}
+
+.NewPost:hover {
+  background-color: red;
+  transform: scale(1.2);
+}
