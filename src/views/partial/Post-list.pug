@@ -1,8 +1,67 @@
-each P in post 
- div(class="justify-content-center")
-  div(class="card-text")=P.subject 
-  br
-  p(class="card-text")=P.comment
+if post
+ each P in post 
+   
+    div(class="card bg-white d " )
+      a(class="d-flex flex-row align-items-center text-dark search-menu-item pointer-cursor" href="/User/" + P.author.pseudo )
+        img(width="40" height="40" class="p-1" src=P.author.avatar)
+        span(class="pl-3")= P.author.pseudo
+        div(class="d-flex flex-row align-items-center float-right pb-2"  )           
+         if currentUser._id.toString() === P.author._id.toString()
+          a( href="/Posts/Edit/" + P._id class=" fas fa-edit pr-2 text-success") 
+          button(class="btn btn-outline-danger float-right mx-3" PostId=P._id) X
+      div(class="mx-auto")
+       h3(class="text-dark text-center")=P.subject 
+       hr(class="bg-dark")
+       a( href="/Posts/" + P._id)
+        img(class="img" src=P.picture )   
+       hr(class="bg-dark")
 
-  button(class="btn btn-outline-warning " PostId=P._id) Editer
-  button(class="btn btn-outline-danger float-right mx-3" PostId=P._id) X
+       p(class="text-dark text-center")=P.comment
+       if P.Like.map((ObjId => ObjId.toString())).includes(user.toString())
+
+        a( href="/Posts/DisLike/" + P._id class="far fa-heart btn btn-info" ) 
+        div(class="d-inline-flex")
+         h5(class="mx-3")=P.Like.length 
+         p(class="mx-2") likes
+         if P.Like.length < 3
+          each LI in P.Like 
+           a(class="d-flex flex-row align-items-center text-dark search-menu-item pointer-cursor" href="/User/" + LI.pseudo )
+
+            img(width="30" height="30" class="p-1" src=LI.avatar)
+         else 
+       else  
+        a( href="/Posts/Like/" + P._id class="far fa-heart btn btn-outline-info" ) 
+        div(class="d-inline-flex")
+         h5(class="mx-3")=P.Like.length 
+         p(class="mx-2") likes
+         if P.Like.length < 3
+          each LI in P.Like 
+           a(class="d-flex flex-row align-items-center text-dark search-menu-item pointer-cursor" href="/User/" + LI.pseudo )
+            img(width="30" height="30" class="p-1" src=LI.avatar)
+         else 
+           
+        
+      h3(class="mx-3") Commentaire  :
+
+      div(class="card-text")
+       each L in P.content
+
+        br  
+        br
+        a(class=" text-dark search-menu-item pointer-cursor" href="/User/" + L.authorComment.pseudo )
+
+         img(width="40" height="40" class="p-1" src=L.authorComment.avatar)
+
+         span(class="mx-3")=L.authorComment.pseudo 
+          
+        each K in L
+         
+         p(class="d-inline-flex")=K[0]
+            
+
+        if currentUser._id.toString() === L.authorComment._id.toString()
+         a( href=`/Posts/comment/` + L.idComment class="fas fa-edit pr-2 text-warning mx-3") 
+         button(class="btn btn-outline-danger float-right mx-3" PostId=P._id) X
+         
+
+       

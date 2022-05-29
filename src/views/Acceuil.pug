@@ -4,8 +4,20 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        include Layout.pug
-    body 
-     div(class="container card-body m-3 p-5 float-right")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js") 
+        script(src="javascript/index.js") 
+        script(src="javascript/Profile.js") 
+        script(src="/javascript/SearchBar.js") 
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/Post.css")
 
-      include ./partial/Post-list.pug
+
+
+
+        include Layout.pug
+        div(class="d-flex flex-row content mx-auto P ")
+
+         include ./includes/Profile.pug
+        div(class="container justify-content-end ")
+
+         include ./partial/Post-list.pug

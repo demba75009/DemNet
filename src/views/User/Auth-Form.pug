@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        include ../Layout.pug
+    body    
+    br    
+    form(class="form-control p-5 mr-3  container justify-content-center" method="post" action= "/Auth/Signin")  
+     br
+     input(class="form-control" type="text" name="pseudo" placeholder="pseudo")
+     br
+     br
+     
+     input(class="form-control" name="password", type="password")
+     br
+     br
+     button(type="submit" class="btn btn-primary") Connexion
+     br
+     br
+     if error 
+      h2(class="text-danger")=error 

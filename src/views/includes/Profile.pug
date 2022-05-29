@@ -1,0 +1,33 @@
+div(class="profile-container  bg-white mr-3 d-flex flex-column")
+form(class=" formAvatar  d-flex p-3 flex-row justify-content-center align-items-center" action="/User/update/image" method="post" enctype="multipart/form-data" )
+  img(class="mx-3" src=user.avatar class="img-fluid")
+  div(class="d-flex flex-row justify-content-left align-items-center mx-3")
+  if currentUser._id.toString() === user._id.toString()
+
+    a(class="ChangePhoto") <i class="fas fa-camera"></i>
+
+    input(type="file" name="avatar" class="d-none avatar")
+div(class=" pseudo d-flex flex-row justify-content-center align-items-center my-3")
+  
+ p=`${ user.pseudo } (${user.local.email})`
+
+if currentUser._id.toString() !== user._id.toString()
+
+ div(class="d-flex flex-row justify-content-center align-items-center")
+  if currentUser.following.map((ObjId => ObjId.toString())).includes(user._id.toString())
+   a( href = "/User/unfollowing/" + user._id class="mx-3 btn btn-info") UnFollow 
+  else
+   a( href = "/User/following/" + user._id class="mx-3 btn btn-success") Follow 
+
+
+div(class="text-center d-flex flex-row justify-content-center align-items-center my-3")
+  div(class="flex-fill mx-3")
+    p
+      strong Post
+      br
+      span(class="text-primary")= post && post.filter( t => t.author._id.toString() === user._id.toString()).length
+  div(class="flex-fill mx-3")
+    p
+      strong Abonnement
+      br
+      span(class="text-primary")= user && user.following.length

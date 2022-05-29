@@ -6,6 +6,10 @@ const bodyParser = require("body-parser");
 
 const routeur = require("./routeur");
 
+module.exports = app;
+
+require("./config/session.config");
+require("./config/passport.config");
 require("./database");
 
 app.set("views", path.join(__dirname, "views"));

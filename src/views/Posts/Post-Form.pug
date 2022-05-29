@@ -7,11 +7,19 @@ html(lang="en")
         include ../Layout.pug
     body    
     br    
-    form(class="form-control p-5 mr-3  container justify-content-center" method="post" action="/Posts/New")  
-     br
-     input(class="form-control" type="text" name="subject" placeholder="Sujet")
-     br
-     br
-     textarea(class="form-control" name="comment", placeholder="ecrivez", cols="30", rows="10")  
-     br
-     button(type="submit" class="btn btn-primary") Publiez 
+    form(enctype="multipart/form-data",class="form-control p-5 mr-3  container justify-content-center"  method="post"  action= Post._id ? "/Posts/Update/" + Post._id :"/Posts/New" )  
+      br
+      textarea(class="form-control" type="text" name="subject" placeholder="Sujet")=Post.subject
+      br
+      br
+      img(src=Post.picture)
+      input(type="file"  name="picture" class="PostImage" )
+
+      br
+      br
+
+      textarea(class="form-control" name="comment", placeholder="ecrivez", cols="30", rows="10")=Post.comment  
+      br
+      button(type="submit" class="btn btn-primary") Publiez 
+
+

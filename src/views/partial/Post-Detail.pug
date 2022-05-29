@@ -1,0 +1,81 @@
+link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css", integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3", crossorigin="anonymous")
+link(rel="stylesheet", href="/css/main.css")
+link(rel="stylesheet",  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js") 
+
+script(src="/javascript/SearchBar.js") 
+include ../Layout.pug
+
+if post
+ each P in post 
+   
+    div(class="card bg-light" )
+      a(class="d-flex flex-row align-items-center text-dark search-menu-item pointer-cursor" href="/User/" + P.author.pseudo )
+        img(width="40" height="40" class="p-1" src=P.author.avatar)
+        span(class="pl-3")= P.author.pseudo
+        div(class="d-flex flex-row align-items-center float-right pb-2"  )           
+         if currentUser._id.toString() === P.author._id.toString()
+          a( href="/Posts/Edit/" + P._id class=" fas fa-edit pr-2 text-success") 
+          button(class="btn btn-outline-danger float-right mx-3" PostId=P._id) X
+      div(class="mx-auto")
+       h3(class="text-dark text-center")=P.subject 
+       hr(class="bg-dark")
+       a( href="/Posts/" + P._id)
+        img(src=P.picture )   
+       hr(class="bg-dark")
+
+       p(class="text-dark text-center")=P.comment
+       if P.Like.map((ObjId => ObjId.toString())).includes(user.toString())
+
+        a( href="/Posts/DisLike/" + P._id class="far fa-heart btn btn-info" ) 
+        div(class="d-inline-flex")
+         h5(class="mx-3")=P.Like.length 
+         p(class="mx-2") likes
+         if P.Like.length < 3
+          each LI in P.Like 
+           a(class="d-flex flex-row align-items-center text-dark search-menu-item pointer-cursor" href="/User/" + LI.pseudo )
+
+            img(width="30" height="30" class="p-1" src=LI.avatar)
+         else 
+       else  
+        a( href="/Posts/Like/" + P._id class="far fa-heart btn btn-outline-info" ) 
+        div(class="d-inline-flex")
+         h5(class="mx-3")=P.Like.length 
+         p(class="mx-2") likes
+         if P.Like.length < 3
+          each LI in P.Like 
+           a(class="d-flex flex-row align-items-center text-dark search-menu-item pointer-cursor" href="/User/" + LI.pseudo )
+            img(width="30" height="30" class="p-1" src=LI.avatar)
+         else 
+           
+        
+      h3 Commentaire  :
+
+      div(class="card-text")
+       each L in P.content
+
+        br  
+        br
+        a(class=" text-dark search-menu-item pointer-cursor" href="/User/" + L.authorComment.pseudo )
+
+         img(width="40" height="40" class="p-1" src=L.authorComment.avatar)
+
+         span(class="mx-3")=L.authorComment.pseudo 
+          
+        each K in L
+         
+         p(class="d-inline-flex")=K[0]
+            
+
+        if currentUser._id.toString() === L.authorComment._id.toString()
+         a( href=`/Posts/comment` + P._id class="fas fa-edit pr-2 text-warning mx-3") 
+         button(class="btn btn-outline-danger float-right mx-3" PostId=P._id) X
+         
+
+    br
+    br   
+    form(class="form-control p-5 mr-3  container justify-content-center" method="post" action=`/Posts/${P._id}/comment`) 
+     textarea( class="form-control" cols="5", rows="5" type="text" placeholder="Commentez..." name="content")
+     br
+     button(class="btn btn-outline-success btn btn-pull-right mx-3") Post
+        

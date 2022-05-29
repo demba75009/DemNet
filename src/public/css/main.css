@@ -1,4 +1,61 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .NewPost {
-  border: 1px solid blue;
-  border-radius: 30%;
+  background-color: blue;
+  border: 1px solid black;
+
+  border-radius: 70%;
+}
+
+.ChangePhoto {
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 10px 20px;
+  padding-top: 20px;
+  cursor: pointer;
+}
+
+.pseudo {
+  margin: 20% 20%;
+}
+
+.ChangePhoto:hover {
+  color: green;
+  transform: scale(1.2);
+}
+
+.NewPost:hover {
+  background-color: red;
+  transform: scale(1.2);
+}
+
+#search-menu-container {
+  position: relative;
+}
+.search-menu {
+  position: absolute;
+  background: white;
+  z-index: 1;
+  top: 20px;
+  right: 0px;
+  width: 300px;
+  min-height: 200px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+.search-menu-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+.search-menu-item:hover {
+  background: #eee;
+  transition: background 0.2s;
+}
+
+.P {
+  margin-top: 20%;
 }

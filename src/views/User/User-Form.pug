@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        include ../Layout.pug
+    body    
+    br    
+    form(class="form-control p-5 mr-3  container justify-content-center" method="post" action= "/User/New")  
+     br
+     input(class="form-control" type="text" name="pseudo" placeholder="username")
+     br
+     br
+     input(class="form-control" name="email", placeholder="email")
+     br
+     input(class="form-control" name="password", type="password")
+
+     button(type="submit" class="btn btn-primary") Creez Un User
